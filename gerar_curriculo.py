@@ -51,12 +51,6 @@ class GeradorCurriculo(FPDF):
         self.add_font("Sans", "B",      FONT_BOLD)
         self.add_font("Sans", "I",      FONT_ITALIC)
 
-    def _cell(self, w, h, txt, style="", size=10, ln=True):
-        self.set_font("Sans", style, size)
-        nx = XPos.LMARGIN if ln else XPos.RIGHT
-        self.set_x(15)
-        self.cell(w, h, txt, new_x=nx, new_y=YPos.NEXT if ln else YPos.TOP)
-
     def cabecalho_pagina(self, d):
         self.set_fill_color(*self.COR_PRIMARIA)
         self.rect(0, 0, 210, 40, "F")
@@ -107,7 +101,7 @@ class GeradorCurriculo(FPDF):
         self.multi_cell(173, 5.5, texto)
 
 #  Gerar PDF
-def gerar(dados, arquivo_saida="curriculo_felipe.pdf"):
+def gerar(dados, arquivo_saida="curriculo.pdf"):
     pdf = GeradorCurriculo()
     pdf.set_margins(15, 15, 15)
     pdf.setup_fonts()
